@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { profileQueryKey } from '@/features/profile/hooks';
@@ -35,3 +37,18 @@ export const useLogoutMutation = () => {
     },
   });
 };
+
+export function useLogout() {
+  const logoutMutation = useLogoutMutation();
+  const navigate = useNavigate();
+
+  const handleLogout = useCallback(async () => {
+    try {
+      await logoutMutation.mutateAsync();
+    } finally {
+      navigate('/login', { replace: true });
+    }
+  }, [logoutMutation, navigate]);
+
+  return { handleLogout, isPending: logoutMutation.isPending };
+}

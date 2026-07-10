@@ -116,3 +116,18 @@ export function getRoleBadgeLabel(role: Role): string {
   };
   return labels[role];
 }
+
+interface DisplayNameUser {
+  first_name?: string | null;
+  last_name?: string | null;
+  username: string;
+}
+
+/**
+ * Format display name: first_name + last_name, fallback to username
+ */
+export function getDisplayName(user: DisplayNameUser): string {
+  return user.first_name
+    ? `${user.first_name}${user.last_name ? ` ${user.last_name}` : ''}`
+    : user.username;
+}

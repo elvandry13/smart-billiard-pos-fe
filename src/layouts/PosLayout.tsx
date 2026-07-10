@@ -1,21 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-import { useAuthState } from '@/shared/hooks/useAuthState';
-import { useLogoutMutation } from '@/features/auth/hooks';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useLogout } from '@/features/auth/hooks';
+import { getDisplayName } from '@/lib/navigation';
 import { LoadingState } from '@/shared/components/LoadingState';
+import { useAuthState } from '@/shared/hooks/useAuthState';
 
 export function PosLayout() {
   const navigate = useNavigate();
   const { user, isLoading } = useAuthState();
-  const logoutMutation = useLogoutMutation();
-
-  const handleLogout = async () => {
-    try {
-      await logoutMutation.mutateAsync();
-    } finally {
-      navigate('/login', { replace: true });
-    }
-  };
+  const { handleLogout, isPending: isLoggingOut } = useLogout();
 
   if (isLoading) {
     return <LoadingState message="Memuat..." />;
@@ -25,10 +17,7 @@ export function PosLayout() {
     return <LoadingState message="Memuat..." />;
   }
 
-  const displayName = user.first_name
-    ? `${user.first_name}${user.last_name ? ` ${user.last_name}` : ''}`
-    : user.username;
-
+  const displayName = getDisplayName(user);
   const tenantName = user.tenant?.name;
   const outletName = user.outlet?.name;
 
@@ -72,10 +61,10 @@ export function PosLayout() {
 
             <button
               onClick={handleLogout}
-              disabled={logoutMutation.isPending}
+              disabled={isLoggingOut}
               className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-emerald-100 transition hover:bg-red-500/20 hover:text-red-300 disabled:opacity-50"
             >
-              {logoutMutation.isPending ? (
+              {isLoggingOut ? (
                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
               ) : (
                 <>

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+import { useLogout } from '@/features/auth/hooks';
 import type { UserProfile } from '@/features/profile/types';
-import { getRoleBadgeLabel } from '@/lib/navigation';
-import { useLogoutMutation } from '@/features/auth/hooks';
+import { getDisplayName, getRoleBadgeLabel } from '@/lib/navigation';
 
 interface TopbarProps {
   user: UserProfile;
@@ -9,20 +9,9 @@ interface TopbarProps {
 
 export function Topbar({ user }: TopbarProps) {
   const navigate = useNavigate();
-  const logoutMutation = useLogoutMutation();
+  const { handleLogout, isPending: isLoggingOut } = useLogout();
 
-  const handleLogout = async () => {
-    try {
-      await logoutMutation.mutateAsync();
-    } finally {
-      navigate('/login', { replace: true });
-    }
-  };
-
-  const displayName = user.first_name
-    ? `${user.first_name}${user.last_name ? ` ${user.last_name}` : ''}`
-    : user.username;
-
+  const displayName = getDisplayName(user);
   const tenantName = user.tenant?.name;
   const outletName = user.outlet?.name;
 
@@ -61,10 +50,10 @@ export function Topbar({ user }: TopbarProps) {
 
           <button
             onClick={handleLogout}
-            disabled={logoutMutation.isPending}
+            disabled={isLoggingOut}
             className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-600 transition hover:bg-red-50 hover:text-red-600 disabled:opacity-50"
           >
-            {logoutMutation.isPending ? (
+            {isLoggingOut ? (
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
             ) : (
               <>

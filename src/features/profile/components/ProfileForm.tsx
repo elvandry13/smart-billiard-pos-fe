@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
@@ -38,7 +39,17 @@ export function ProfileForm({
     },
   });
 
-  // Reset form when defaultValues change (e.g., after successful update)
+  // Sync form fields when defaultValues change (e.g., after ProfilePage refetches)
+  useEffect(() => {
+    reset({
+      email: defaultValues?.email ?? '',
+      phone: defaultValues?.phone ?? '',
+      first_name: defaultValues?.first_name ?? '',
+      last_name: defaultValues?.last_name ?? '',
+    });
+  }, [defaultValues?.email, defaultValues?.phone, defaultValues?.first_name, defaultValues?.last_name, reset]);
+
+  // Manual reset for Batal button
   const handleReset = () => {
     reset({
       email: defaultValues?.email ?? '',

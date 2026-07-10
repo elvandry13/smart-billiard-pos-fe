@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
@@ -39,12 +39,6 @@ export function LoginPage() {
   const profileQuery = useProfileQuery({ enabled: hasStoredSession });
   const locationState = location.state as LoginLocationState | null;
   const requestedPath = locationState?.from?.pathname;
-
-  useEffect(() => {
-    if (profileQuery.data) {
-      navigate(getRedirectPath(profileQuery.data, requestedPath), { replace: true });
-    }
-  }, [navigate, profileQuery.data, requestedPath]);
 
   const handleSubmit = async (values: LoginFormValues) => {
     setLoginError(undefined);

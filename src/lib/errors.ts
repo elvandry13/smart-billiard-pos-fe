@@ -159,7 +159,10 @@ export function getValidationSummary(fieldErrors: FieldValidationErrors): string
       // Convert field name to readable format (e.g., "first_name" -> "First name")
       const readableField = field
         .split('.')
-        .map((part) => part.replace(/_/g, ' '))
+        .map((part) => {
+          const spaced = part.replace(/_/g, ' ');
+          return spaced.charAt(0).toUpperCase() + spaced.slice(1);
+        })
         .join('.');
 
       messages.push(`${readableField}: ${errors[0]}`);

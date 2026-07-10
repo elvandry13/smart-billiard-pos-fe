@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import type { UserProfile } from '@/features/profile/types';
 import { getRoleBadgeLabel } from '@/lib/navigation';
 import { useLogoutMutation } from '@/features/auth/hooks';
-import { LoadingState } from './LoadingState';
 
 interface TopbarProps {
   user: UserProfile;
@@ -66,7 +65,7 @@ export function Topbar({ user }: TopbarProps) {
             className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-600 transition hover:bg-red-50 hover:text-red-600 disabled:opacity-50"
           >
             {logoutMutation.isPending ? (
-              <LoadingState message="" />
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
             ) : (
               <>
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

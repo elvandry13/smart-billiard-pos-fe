@@ -12,7 +12,7 @@ interface LoadingStateProps {
 const sizeClasses: Record<LoadingSize, string> = {
   sm: 'w-5 h-5 border-2',
   md: 'w-8 h-8 border-2',
-  lg: 'w-12 h-12 border-3',
+  lg: 'w-12 h-12 border-4',
 };
 
 export const LoadingState: React.FC<LoadingStateProps> = ({

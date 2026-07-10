@@ -1,6 +1,13 @@
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
-const navItems = ['Dashboard', 'Sessions', 'Tables', 'Payments', 'Receipts', 'Audit Logs'];
+const navItems = [
+  { label: 'Dashboard', path: '/dashboard' },
+  { label: 'Sessions', path: '/sessions' },
+  { label: 'Tables', path: '/tables' },
+  { label: 'Payments', path: '/payments' },
+  { label: 'Receipts', path: '/receipts' },
+  { label: 'Audit Logs', path: '/audit-logs' },
+];
 
 export function DashboardLayout() {
   return (
@@ -12,13 +19,17 @@ export function DashboardLayout() {
         </div>
         <nav className="mt-10 space-y-1">
           {navItems.map((item) => (
-            <a
-              key={item}
-              href="#"
-              className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950"
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `block rounded-xl px-4 py-3 text-sm font-medium transition hover:bg-slate-100 hover:text-slate-950 ${
+                  isActive ? 'bg-brand-50 text-brand-700' : 'text-slate-600'
+                }`
+              }
             >
-              {item}
-            </a>
+              {item.label}
+            </NavLink>
           ))}
         </nav>
       </aside>

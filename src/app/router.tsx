@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
+import { LoginPage } from '@/features/auth/pages/LoginPage';
 import { AuthLayout } from '@/layouts/AuthLayout';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { PosLayout } from '@/layouts/PosLayout';
@@ -16,12 +17,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Login"
-            description="Halaman autentikasi akan diimplementasikan pada Phase 1."
-          />
-        ),
+        element: <LoginPage />,
       },
     ],
   },

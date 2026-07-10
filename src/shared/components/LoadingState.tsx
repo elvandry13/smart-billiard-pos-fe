@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type LoadingSize = 'sm' | 'md' | 'lg';
 
@@ -16,7 +16,7 @@ const sizeClasses: Record<LoadingSize, string> = {
 };
 
 export const LoadingState: React.FC<LoadingStateProps> = ({
-  message = "Memuat...",
+  message = 'Memuat...',
   size = 'md',
   fullScreen = false,
   className = '',
@@ -30,9 +30,7 @@ export const LoadingState: React.FC<LoadingStateProps> = ({
       <div
         className={`${sizeClasses[size]} border-blue-500 border-t-transparent rounded-full animate-spin`}
       />
-      {message && (
-        <p className="mt-4 text-gray-600 text-sm font-medium">{message}</p>
-      )}
+      {message && <p className="mt-4 text-gray-600 text-sm font-medium">{message}</p>}
     </div>
   );
 };

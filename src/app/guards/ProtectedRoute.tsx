@@ -1,7 +1,7 @@
-import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
-import { useAuthState } from "@/shared/hooks/useAuthState";
-import { LoadingState } from "@/shared/components/LoadingState";
+import React from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuthState } from '@/shared/hooks/useAuthState';
+import { LoadingState } from '@/shared/components/LoadingState';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;

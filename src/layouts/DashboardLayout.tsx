@@ -19,9 +19,7 @@ export function DashboardLayout() {
     <div className="min-h-screen bg-slate-100">
       <aside className="fixed inset-y-0 left-0 hidden w-72 border-r border-slate-200 bg-white lg:block">
         <div className="p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-700">
-            Smart
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-700">Smart</p>
           <h1 className="mt-1 text-xl font-bold text-slate-950">Billiard POS</h1>
         </div>
         <SidebarNav role={user.role} />

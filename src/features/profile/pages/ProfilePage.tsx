@@ -95,18 +95,17 @@ export function ProfilePage() {
     return <ErrorState message="Profil tidak ditemukan." />;
   }
 
-  const displayName = profile.first_name || profile.last_name
-    ? `${profile.first_name ?? ''} ${profile.last_name ?? ''}`.trim()
-    : profile.username;
+  const displayName =
+    profile.first_name || profile.last_name
+      ? `${profile.first_name ?? ''} ${profile.last_name ?? ''}`.trim()
+      : profile.username;
 
   return (
     <div className="space-y-6">
       {/* Page Header */}
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-slate-950">Profil Saya</h1>
-        <p className="mt-1 text-sm text-slate-600">
-          Kelola informasi akun dan password Anda.
-        </p>
+        <p className="mt-1 text-sm text-slate-600">Kelola informasi akun dan password Anda.</p>
       </div>
 
       {/* Profile Card */}

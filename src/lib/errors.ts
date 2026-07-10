@@ -25,7 +25,7 @@ export class ApiError extends Error {
     this.name = 'ApiError';
     this.status = status;
     this.payload = payload;
-    
+
     // Extract field-level validation errors if present
     if (typeof payload === 'object' && payload !== null) {
       const fieldErrors = extractFieldErrors(payload);
@@ -104,7 +104,10 @@ export function getApiErrorMessage(error: unknown): string {
     const apiError = error as ApiErrorPayload;
 
     // Handle non_field_errors (Django DRF)
-    if (Array.isArray(apiError.non_field_errors) && typeof apiError.non_field_errors[0] === 'string') {
+    if (
+      Array.isArray(apiError.non_field_errors) &&
+      typeof apiError.non_field_errors[0] === 'string'
+    ) {
       return apiError.non_field_errors[0];
     }
 
@@ -150,19 +153,19 @@ export function getApiErrorMessage(error: unknown): string {
  */
 export function getValidationSummary(fieldErrors: FieldValidationErrors): string {
   const messages: string[] = [];
-  
+
   for (const [field, errors] of Object.entries(fieldErrors)) {
     if (errors.length > 0) {
       // Convert field name to readable format (e.g., "first_name" -> "First name")
       const readableField = field
         .split('.')
-        .map(part => part.replace(/_/g, ' '))
+        .map((part) => part.replace(/_/g, ' '))
         .join('.');
-      
+
       messages.push(`${readableField}: ${errors[0]}`);
     }
   }
-  
+
   return messages.join('; ');
 }
 
@@ -171,7 +174,7 @@ export function getValidationSummary(fieldErrors: FieldValidationErrors): string
  * Usage:
  * ```typescript
  * const { setError } = useForm();
- * 
+ *
  * try {
  *   await mutation();
  * } catch (error) {
@@ -183,7 +186,7 @@ export function getValidationSummary(fieldErrors: FieldValidationErrors): string
  */
 export function mapApiValidationErrors(
   fieldErrors: FieldValidationErrors,
-  setError: (name: string, error: { type: string; message: string }) => void
+  setError: (name: string, error: { type: string; message: string }) => void,
 ): void {
   for (const [field, errors] of Object.entries(fieldErrors)) {
     if (errors.length > 0) {

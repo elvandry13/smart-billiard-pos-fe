@@ -1,9 +1,9 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useProfileQuery } from "@/features/profile/hooks";
-import { authStorage } from "@/lib/authStorage";
-import { getApiErrorMessage } from "@/lib/errors";
-import type { UserProfile } from "@/features/profile/types";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useProfileQuery } from '@/features/profile/hooks';
+import { authStorage } from '@/lib/authStorage';
+import { getApiErrorMessage } from '@/lib/errors';
+import type { UserProfile } from '@/features/profile/types';
 
 export interface AuthState {
   isAuthenticated: boolean;
@@ -31,7 +31,7 @@ export function useAuthGuard() {
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      navigate("/login", { replace: true });
+      navigate('/login', { replace: true });
     }
   }, [isLoading, isAuthenticated, navigate]);
   return { isAuthenticated, isLoading, isError, errorMessage };

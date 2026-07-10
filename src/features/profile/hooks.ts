@@ -4,7 +4,12 @@ import { authStorage } from '@/lib/authStorage';
 
 import { changePasswordApi, getProfileApi, updateProfileApi } from './api';
 
-import type { ChangePasswordRequest, UpdateProfileRequest, UpdateProfileResponse, UserProfile } from './types';
+import type {
+  ChangePasswordRequest,
+  UpdateProfileRequest,
+  UpdateProfileResponse,
+  UserProfile,
+} from './types';
 
 export const profileQueryKey = ['profile'] as const;
 

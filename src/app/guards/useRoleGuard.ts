@@ -1,5 +1,5 @@
-import { Role } from "@/types/auth";
-import { useAuthState } from "@/shared/hooks/useAuthState";
+import { Role } from '@/types/auth';
+import { useAuthState } from '@/shared/hooks/useAuthState';
 
 /**
  * Hook untuk cek apakah user memiliki akses ke route tertentu

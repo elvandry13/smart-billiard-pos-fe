@@ -83,7 +83,8 @@ export function ChangePasswordForm({ isSubmitting = false, onSubmit }: ChangePas
       } else if (error && typeof error === 'object' && 'new_password' in error) {
         setError('new_password', {
           type: 'server',
-          message: (error as Record<string, string[]>).new_password?.[0] ?? 'Password baru tidak valid',
+          message:
+            (error as Record<string, string[]>).new_password?.[0] ?? 'Password baru tidak valid',
         });
       }
       throw error;

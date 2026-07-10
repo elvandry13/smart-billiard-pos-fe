@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface EmptyStateProps {
   title?: string;
@@ -78,18 +78,16 @@ const icons = {
 };
 
 export const EmptyState: React.FC<EmptyStateProps> = ({
-  title = "Tidak ada data",
+  title = 'Tidak ada data',
   description,
-  icon = "default",
+  icon = 'default',
   action,
 }) => {
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4">
       <div className="mb-4">{icons[icon]}</div>
       <h3 className="text-lg font-semibold text-gray-700 mb-1">{title}</h3>
-      {description && (
-        <p className="text-gray-500 text-center mb-4 max-w-sm">{description}</p>
-      )}
+      {description && <p className="text-gray-500 text-center mb-4 max-w-sm">{description}</p>}
       {action && (
         <button
           onClick={action.onClick}

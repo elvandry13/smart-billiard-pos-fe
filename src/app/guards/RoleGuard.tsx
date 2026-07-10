@@ -1,10 +1,10 @@
-import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
-import { Role } from "@/types/auth";
-import { defaultRouteByRole } from "@/lib/permissions";
-import { useAuthState } from "@/shared/hooks/useAuthState";
-import { LoadingState } from "@/shared/components/LoadingState";
-import { ForbiddenState } from "@/shared/components/ForbiddenState";
+import React from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { Role } from '@/types/auth';
+import { defaultRouteByRole } from '@/lib/permissions';
+import { useAuthState } from '@/shared/hooks/useAuthState';
+import { LoadingState } from '@/shared/components/LoadingState';
+import { ForbiddenState } from '@/shared/components/ForbiddenState';
 
 interface RoleGuardProps {
   children: React.ReactNode;
@@ -41,12 +41,7 @@ export const RoleGuard: React.FC<RoleGuardProps> = ({
   if (!hasAccess) {
     if (showForbiddenState) {
       // Tampilkan forbidden state dengan opsi kembali ke home
-      return (
-        <ForbiddenState
-          user={user}
-          requiredRoles={allowedRoles}
-        />
-      );
+      return <ForbiddenState user={user} requiredRoles={allowedRoles} />;
     } else {
       // Redirect ke default route sesuai role user
       const defaultRoute = defaultRouteByRole[user.role];

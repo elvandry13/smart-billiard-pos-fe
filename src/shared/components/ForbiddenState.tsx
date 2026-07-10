@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Role } from "@/types/auth";
-import { defaultRouteByRole } from "@/lib/permissions";
-import type { UserProfile } from "@/features/profile/types";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Role } from '@/types/auth';
+import { defaultRouteByRole } from '@/lib/permissions';
+import type { UserProfile } from '@/features/profile/types';
 
 interface ForbiddenStateProps {
   user?: UserProfile | null;
@@ -27,7 +27,7 @@ export const ForbiddenState: React.FC<ForbiddenStateProps> = ({
       const defaultRoute = defaultRouteByRole[user.role];
       window.location.href = defaultRoute;
     } else {
-      window.location.href = "/";
+      window.location.href = '/';
     }
   };
 
@@ -43,7 +43,7 @@ export const ForbiddenState: React.FC<ForbiddenStateProps> = ({
       officer: 'Officer',
     };
 
-    const labels = requiredRoles.map(r => roleLabels[r] || r);
+    const labels = requiredRoles.map((r) => roleLabels[r] || r);
     return labels.join(', ');
   };
 
@@ -71,7 +71,7 @@ export const ForbiddenState: React.FC<ForbiddenStateProps> = ({
       <p className="text-gray-600 text-center mb-6 max-w-md">
         {requiredRolesText
           ? `Anda tidak memiliki izin untuk mengakses halaman ini. Halaman ini hanya dapat diakses oleh: ${requiredRolesText}.`
-          : "Anda tidak memiliki izin untuk mengakses halaman ini."}
+          : 'Anda tidak memiliki izin untuk mengakses halaman ini.'}
       </p>
       <div className="flex gap-4">
         <button

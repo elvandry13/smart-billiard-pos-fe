@@ -1,20 +1,20 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
-import { LoginPage } from "@/features/auth/pages/LoginPage";
-import { ProfilePage } from "@/features/profile/pages/ProfilePage";
-import { AuthLayout } from "@/layouts/AuthLayout";
-import { DashboardLayout } from "@/layouts/DashboardLayout";
-import { PosLayout } from "@/layouts/PosLayout";
-import { PlaceholderPage } from "@/shared/components/PlaceholderPage";
-import { ProtectedRoute, RoleGuard } from "@/app/guards";
+import { LoginPage } from '@/features/auth/pages/LoginPage';
+import { ProfilePage } from '@/features/profile/pages/ProfilePage';
+import { AuthLayout } from '@/layouts/AuthLayout';
+import { DashboardLayout } from '@/layouts/DashboardLayout';
+import { PosLayout } from '@/layouts/PosLayout';
+import { PlaceholderPage } from '@/shared/components/PlaceholderPage';
+import { ProtectedRoute, RoleGuard } from '@/app/guards';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Navigate to="/login" replace />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <AuthLayout />,
     children: [
       {
@@ -24,10 +24,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/dashboard",
+    path: '/dashboard',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["owner", "admin"]}>
+        <RoleGuard allowedRoles={['owner', 'admin']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -45,10 +45,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/pos",
+    path: '/pos',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["officer"]}>
+        <RoleGuard allowedRoles={['officer']}>
           <PosLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -66,10 +66,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/profile",
+    path: '/profile',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["super_admin", "owner", "admin", "officer"]}>
+        <RoleGuard allowedRoles={['super_admin', 'owner', 'admin', 'officer']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -84,10 +84,10 @@ export const router = createBrowserRouter([
   // Placeholder routes untuk routes lain yang masuk permission matrix
   // Route-route ini belum memiliki page component karena masuk phase berikutnya
   {
-    path: "/tenants",
+    path: '/tenants',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["super_admin"]}>
+        <RoleGuard allowedRoles={['super_admin']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -105,10 +105,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/outlets",
+    path: '/outlets',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["super_admin"]}>
+        <RoleGuard allowedRoles={['super_admin']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -126,10 +126,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/users",
+    path: '/users',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["super_admin", "admin"]}>
+        <RoleGuard allowedRoles={['super_admin', 'admin']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -147,10 +147,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/sessions",
+    path: '/sessions',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["owner", "admin", "officer"]}>
+        <RoleGuard allowedRoles={['owner', 'admin', 'officer']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -168,10 +168,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/tables",
+    path: '/tables',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["admin", "officer"]}>
+        <RoleGuard allowedRoles={['admin', 'officer']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -189,10 +189,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/pricing-rules",
+    path: '/pricing-rules',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["admin"]}>
+        <RoleGuard allowedRoles={['admin']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -210,10 +210,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/additional-fees",
+    path: '/additional-fees',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["admin"]}>
+        <RoleGuard allowedRoles={['admin']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -231,10 +231,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/packages",
+    path: '/packages',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["admin", "officer"]}>
+        <RoleGuard allowedRoles={['admin', 'officer']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -252,10 +252,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/shifts",
+    path: '/shifts',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["admin", "officer"]}>
+        <RoleGuard allowedRoles={['admin', 'officer']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -273,10 +273,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/payments",
+    path: '/payments',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["admin", "officer"]}>
+        <RoleGuard allowedRoles={['admin', 'officer']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -294,10 +294,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/receipts",
+    path: '/receipts',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["admin", "officer"]}>
+        <RoleGuard allowedRoles={['admin', 'officer']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -315,10 +315,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/audit-logs",
+    path: '/audit-logs',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={["admin"]}>
+        <RoleGuard allowedRoles={['admin']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>

@@ -47,7 +47,9 @@ export function PosLayout() {
             <div>
               <p className="text-sm font-medium text-white">{displayName}</p>
               <p className="text-xs text-emerald-300">
-                {tenantName && outletName ? `${tenantName} • ${outletName}` : tenantName || outletName || ''}
+                {tenantName && outletName
+                  ? `${tenantName} • ${outletName}`
+                  : tenantName || outletName || ''}
               </p>
             </div>
           </div>

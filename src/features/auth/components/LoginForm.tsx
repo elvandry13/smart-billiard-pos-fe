@@ -25,7 +25,10 @@ export function LoginForm({ errorMessage, isSubmitting = false, onSubmit }: Logi
   return (
     <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
       {errorMessage ? (
-        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+        <div
+          className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+          role="alert"
+        >
           {errorMessage}
         </div>
       ) : null}

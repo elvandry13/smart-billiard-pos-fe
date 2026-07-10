@@ -70,7 +70,9 @@ export function LoginPage() {
     <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-950/20">
       <div className="mb-6">
         <p className="text-sm font-semibold uppercase tracking-wide text-brand-700">Login</p>
-        <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950">Masuk ke akun Anda</h2>
+        <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950">
+          Masuk ke akun Anda
+        </h2>
         <p className="mt-2 text-sm text-slate-600">
           Gunakan username dan password yang terdaftar untuk mengakses Smart Billiard POS.
         </p>

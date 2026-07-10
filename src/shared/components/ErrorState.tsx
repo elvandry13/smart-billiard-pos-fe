@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type ErrorVariant = 'default' | 'warning' | 'danger';
 
@@ -10,7 +10,10 @@ interface ErrorStateProps {
   className?: string;
 }
 
-const variantConfig: Record<ErrorVariant, { icon: React.ReactNode; iconColor: string; bgColor: string }> = {
+const variantConfig: Record<
+  ErrorVariant,
+  { icon: React.ReactNode; iconColor: string; bgColor: string }
+> = {
   default: {
     icon: (
       <svg
@@ -74,7 +77,7 @@ const variantConfig: Record<ErrorVariant, { icon: React.ReactNode; iconColor: st
 };
 
 export const ErrorState: React.FC<ErrorStateProps> = ({
-  message = "Terjadi kesalahan",
+  message = 'Terjadi kesalahan',
   description,
   onRetry,
   variant = 'default',
@@ -88,9 +91,7 @@ export const ErrorState: React.FC<ErrorStateProps> = ({
         <div className={config.iconColor}>{config.icon}</div>
       </div>
       <h3 className="text-lg font-semibold text-gray-800 mb-1">{message}</h3>
-      {description && (
-        <p className="text-gray-600 text-center mb-4 max-w-md">{description}</p>
-      )}
+      {description && <p className="text-gray-600 text-center mb-4 max-w-md">{description}</p>}
       {onRetry && (
         <button
           onClick={onRetry}
@@ -109,10 +110,7 @@ interface ServerErrorStateProps {
   className?: string;
 }
 
-export const ServerErrorState: React.FC<ServerErrorStateProps> = ({
-  onRetry,
-  className = '',
-}) => {
+export const ServerErrorState: React.FC<ServerErrorStateProps> = ({ onRetry, className = '' }) => {
   return (
     <ErrorState
       variant="danger"

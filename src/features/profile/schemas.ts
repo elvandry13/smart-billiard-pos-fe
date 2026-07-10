@@ -1,20 +1,11 @@
 import { z } from 'zod';
 
-const optionalTrimmedString = z.preprocess(
-  (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
-  z.string().trim().optional(),
-);
-
-const optionalEmail = z.preprocess(
-  (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
-  z.string().trim().email('Format email tidak valid').optional(),
-);
-
+// Simple optional string without preprocess (to avoid type issues)
 export const updateProfileSchema = z.object({
-  email: optionalEmail,
-  phone: optionalTrimmedString,
-  first_name: optionalTrimmedString,
-  last_name: optionalTrimmedString,
+  email: z.string().email('Format email tidak valid').optional().or(z.literal('')),
+  phone: z.string().optional().or(z.literal('')),
+  first_name: z.string().optional().or(z.literal('')),
+  last_name: z.string().optional().or(z.literal('')),
 });
 
 export const changePasswordSchema = z

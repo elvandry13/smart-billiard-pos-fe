@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import { LoginPage } from "@/features/auth/pages/LoginPage";
+import { ProfilePage } from "@/features/profile/pages/ProfilePage";
 import { AuthLayout } from "@/layouts/AuthLayout";
 import { DashboardLayout } from "@/layouts/DashboardLayout";
 import { PosLayout } from "@/layouts/PosLayout";
@@ -76,12 +77,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Profile"
-            description="Profile user, update data, dan change password masuk ke Phase 1."
-          />
-        ),
+        element: <ProfilePage />,
       },
     ],
   },

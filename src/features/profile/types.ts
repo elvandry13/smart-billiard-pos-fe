@@ -22,10 +22,10 @@ export interface UserProfile {
 }
 
 export interface UpdateProfileRequest {
-  email?: string;
+  email?: string | null;
   phone?: string | null;
-  first_name?: string;
-  last_name?: string;
+  first_name?: string | null;
+  last_name?: string | null;
 }
 
 export interface ChangePasswordRequest {

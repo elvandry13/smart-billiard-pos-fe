@@ -15,6 +15,9 @@ export interface ApiClientConfig extends RequestInit {
 
 export const AUTH_SESSION_EXPIRED_EVENT = 'smart-billiard-pos:auth-session-expired';
 
+// Default timeout for API requests (30 seconds)
+const DEFAULT_TIMEOUT_MS = 30000;
+
 let refreshPromise: Promise<string | null> | null = null;
 
 const buildUrl = (path: string): string => {
@@ -66,6 +69,20 @@ const clearAuthSession = () => {
   notifySessionExpired();
 };
 
+const fetchWithTimeout = (
+  url: string,
+  options: RequestInit,
+  timeoutMs: number = DEFAULT_TIMEOUT_MS,
+): Promise<Response> => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  return fetch(url, {
+    ...options,
+    signal: controller.signal,
+  }).finally(() => clearTimeout(timeoutId));
+};
+
 const refreshAccessToken = async (): Promise<string | null> => {
   const refreshToken = authStorage.getRefreshToken();
 
@@ -75,7 +92,7 @@ const refreshAccessToken = async (): Promise<string | null> => {
   }
 
   if (!refreshPromise) {
-    refreshPromise = fetch(buildUrl('/auth/refresh/'), {
+    refreshPromise = fetchWithTimeout(buildUrl('/auth/refresh/'), {
       method: 'POST',
       headers: createHeaders(undefined, null),
       body: JSON.stringify({ refresh: refreshToken }),
@@ -114,7 +131,7 @@ async function request<T>(path: string, config: ApiClientConfig, hasRetried: boo
   const { auth = true, skipRefresh = false, token, headers, ...requestConfig } = config;
   const accessToken = auth ? (token ?? authStorage.getAccessToken()) : null;
 
-  const response = await fetch(buildUrl(path), {
+  const response = await fetchWithTimeout(buildUrl(path), {
     ...requestConfig,
     headers: createHeaders(headers, accessToken),
   });

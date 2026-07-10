@@ -9,8 +9,12 @@ export function formatMoney(value: string | number, currency = 'IDR') {
 }
 
 export function formatDateTime(value: string | Date) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return '-';
+  }
   return new Intl.DateTimeFormat('id-ID', {
     dateStyle: 'medium',
     timeStyle: 'short',
-  }).format(new Date(value));
+  }).format(date);
 }

@@ -17,6 +17,10 @@ export const changePasswordSchema = z
   .refine((values) => values.new_password === values.confirm_password, {
     message: 'Konfirmasi password tidak sama',
     path: ['confirm_password'],
+  })
+  .refine((values) => values.new_password !== values.old_password, {
+    message: 'Password baru harus berbeda dari password lama',
+    path: ['new_password'],
   });
 
 export type UpdateProfileFormValues = z.infer<typeof updateProfileSchema>;

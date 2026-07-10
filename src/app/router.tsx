@@ -1,18 +1,19 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import { LoginPage } from '@/features/auth/pages/LoginPage';
-import { AuthLayout } from '@/layouts/AuthLayout';
-import { DashboardLayout } from '@/layouts/DashboardLayout';
-import { PosLayout } from '@/layouts/PosLayout';
-import { PlaceholderPage } from '@/shared/components/PlaceholderPage';
+import { LoginPage } from "@/features/auth/pages/LoginPage";
+import { AuthLayout } from "@/layouts/AuthLayout";
+import { DashboardLayout } from "@/layouts/DashboardLayout";
+import { PosLayout } from "@/layouts/PosLayout";
+import { PlaceholderPage } from "@/shared/components/PlaceholderPage";
+import { ProtectedRoute } from "@/app/guards";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Navigate to="/login" replace />,
   },
   {
-    path: '/login',
+    path: "/login",
     element: <AuthLayout />,
     children: [
       {
@@ -22,8 +23,12 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/dashboard',
-    element: <DashboardLayout />,
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute>
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
@@ -37,8 +42,12 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/pos',
-    element: <PosLayout />,
+    path: "/pos",
+    element: (
+      <ProtectedRoute>
+        <PosLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
@@ -52,8 +61,12 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/profile',
-    element: <DashboardLayout />,
+    path: "/profile",
+    element: (
+      <ProtectedRoute>
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,

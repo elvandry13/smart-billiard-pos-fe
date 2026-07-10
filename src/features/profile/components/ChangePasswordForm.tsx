@@ -7,6 +7,7 @@ import { changePasswordSchema, type ChangePasswordFormValues } from '../schemas'
 interface ChangePasswordFormProps {
   isSubmitting?: boolean;
   onSubmit: (values: ChangePasswordFormValues) => void | Promise<void>;
+  onCancel?: () => void;
 }
 
 // Eye/Show icon SVG
@@ -39,7 +40,7 @@ const EyeOffIcon = () => (
   </svg>
 );
 
-export function ChangePasswordForm({ isSubmitting = false, onSubmit }: ChangePasswordFormProps) {
+export function ChangePasswordForm({ isSubmitting = false, onSubmit, onCancel }: ChangePasswordFormProps) {
   const [showPasswords, setShowPasswords] = useState({
     old_password: false,
     new_password: false,
@@ -219,7 +220,10 @@ export function ChangePasswordForm({ isSubmitting = false, onSubmit }: ChangePas
           type="reset"
           className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-200 disabled:cursor-not-allowed disabled:bg-slate-100"
           disabled={isSubmitting}
-          onClick={() => reset()}
+          onClick={() => {
+            reset();
+            onCancel?.();
+          }}
         >
           Batal
         </button>

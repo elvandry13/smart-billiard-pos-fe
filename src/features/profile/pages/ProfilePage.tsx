@@ -183,6 +183,7 @@ export function ProfilePage() {
             <ChangePasswordForm
               isSubmitting={changePasswordMutation.isPending}
               onSubmit={handleChangePassword}
+              onCancel={() => setShowPasswordModal(false)}
             />
           </div>
         ) : (

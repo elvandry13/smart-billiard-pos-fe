@@ -4,3 +4,9 @@ export interface PaginatedResponse<T> {
   previous: string | null;
   results: T[];
 }
+
+export interface ListParams {
+  page?: number;
+  search?: string;
+  ordering?: string;
+}

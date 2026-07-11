@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import { LoginPage } from '@/features/auth/pages/LoginPage';
 import { ProfilePage } from '@/features/profile/pages/ProfilePage';
+import { TenantsPage } from '@/features/tenants/pages/TenantsPage';
 import { AuthLayout } from '@/layouts/AuthLayout';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { PosLayout } from '@/layouts/PosLayout';
@@ -95,12 +96,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Tenants"
-            description="Manajemen tenant akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <TenantsPage />,
       },
     ],
   },

@@ -2,6 +2,7 @@ import type { PaginatedResponse } from '@/types/api';
 
 export interface Tenant {
   id: number | string;
+  code: string;
   name: string;
   is_active: boolean;
   created_at?: string;
@@ -16,11 +17,13 @@ export interface TenantListParams {
 }
 
 export interface CreateTenantRequest {
+  code: string;
   name: string;
   is_active?: boolean;
 }
 
 export interface UpdateTenantRequest {
+  code?: string;
   name?: string;
   is_active?: boolean;
 }

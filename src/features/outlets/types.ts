@@ -3,6 +3,7 @@ import type { ScopedEntitySummary } from '@/features/profile/types';
 
 export interface Outlet {
   id: number | string;
+  code: string;
   tenant: ScopedEntitySummary;
   name: string;
   address?: string | null;
@@ -21,6 +22,7 @@ export interface OutletListParams {
 }
 
 export interface CreateOutletRequest {
+  code: string;
   tenant: number | string;
   name: string;
   address?: string | null;
@@ -29,6 +31,7 @@ export interface CreateOutletRequest {
 }
 
 export interface UpdateOutletRequest {
+  code?: string;
   tenant?: number | string;
   name?: string;
   address?: string | null;

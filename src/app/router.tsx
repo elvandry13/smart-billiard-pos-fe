@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { LoginPage } from '@/features/auth/pages/LoginPage';
 import { ProfilePage } from '@/features/profile/pages/ProfilePage';
 import { TenantsPage } from '@/features/tenants/pages/TenantsPage';
+import { OutletsPage } from '@/features/outlets/pages/OutletsPage';
 import { AuthLayout } from '@/layouts/AuthLayout';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { PosLayout } from '@/layouts/PosLayout';
@@ -112,12 +113,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Outlets"
-            description="Manajemen outlet akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <OutletsPage />,
       },
     ],
   },

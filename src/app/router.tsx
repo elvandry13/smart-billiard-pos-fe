@@ -4,6 +4,7 @@ import { LoginPage } from '@/features/auth/pages/LoginPage';
 import { ProfilePage } from '@/features/profile/pages/ProfilePage';
 import { TenantsPage } from '@/features/tenants/pages/TenantsPage';
 import { OutletsPage } from '@/features/outlets/pages/OutletsPage';
+import { UsersPage } from '@/features/users/pages/UsersPage';
 import { AuthLayout } from '@/layouts/AuthLayout';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { PosLayout } from '@/layouts/PosLayout';
@@ -129,12 +130,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Users"
-            description="Manajemen user akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <UsersPage />,
       },
     ],
   },

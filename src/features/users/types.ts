@@ -13,6 +13,7 @@ export interface User {
   first_name?: string | null;
   last_name?: string | null;
   is_active: boolean;
+  date_joined?: string;
   created_at?: string;
   updated_at?: string;
 }

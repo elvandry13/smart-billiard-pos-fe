@@ -10,10 +10,11 @@ export const getOutletsQueryKey = (params?: OutletListParams) => {
   return params ? [...outletsQueryKey, params] : outletsQueryKey;
 };
 
-export const useOutletsQuery = (params?: OutletListParams) => {
+export const useOutletsQuery = (params?: OutletListParams, options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: getOutletsQueryKey(params),
     queryFn: () => listOutletsApi(params),
+    enabled: options?.enabled ?? true,
   });
 };
 

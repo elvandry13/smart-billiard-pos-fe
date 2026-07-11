@@ -10,10 +10,11 @@ export const getTenantsQueryKey = (params?: TenantListParams) => {
   return params ? [...tenantsQueryKey, params] : tenantsQueryKey;
 };
 
-export const useTenantsQuery = (params?: TenantListParams) => {
+export const useTenantsQuery = (params?: TenantListParams, options?: { enabled?: boolean }) => {
   return useQuery({
     queryKey: getTenantsQueryKey(params),
     queryFn: () => listTenantsApi(params),
+    enabled: options?.enabled ?? true,
   });
 };
 

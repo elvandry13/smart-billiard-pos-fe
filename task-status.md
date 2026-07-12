@@ -222,11 +222,48 @@
   - Cara verifikasi:
     - `npm run build` — sukses (built in 5.87s).
 
+- Phase 2 Task 9: Router, Navigation, dan Permission Alignment.
+  - Acceptance criteria yang terpenuhi:
+    - `/tenants` dan `/outlets` hanya `super_admin` (sudah benar di router, permissions, navigation).
+    - `/users` hanya `super_admin` dan `admin` (sudah benar).
+    - `/tables`, `/pricing-rules`, `/additional-fees`, `/packages` hanya `admin` untuk Phase 2 (officer sudah di-remove di Task 6 dan 8).
+    - `officer` tidak melihat menu CRUD master data Phase 2 (navigation items sudah dibatasi).
+    - Default route by role tetap: `super_admin -> /tenants`, `owner/admin -> /dashboard`, `officer -> /pos`.
+    - Placeholder yang belum masuk Phase 2 tetap tidak rusak.
+  - File yang sudah benar (tidak perlu perubahan):
+    - `src/app/router.tsx` — RoleGuard sudah sesuai untuk semua route Phase 2.
+    - `src/lib/permissions.ts` — routeRoles sudah sesuai.
+    - `src/lib/navigation.ts` — navigationItems sudah sesuai.
+  - Cara verifikasi:
+    - `npm run build` — sukses (built in 2.13s).
+    - Semua route guard dan sidebar alignment sudah benar dari task sebelumnya.
+
+- Phase 2 Task 10: Validasi, Manual QA, dan Regression Check Phase 2.
+  - Acceptance criteria yang terpenuhi:
+    - `npm run lint` — sukses (lint error hanya dari worktree `.kilo/worktrees/hyper-lung`, bukan dari kode utama).
+    - `npm run build` — sukses (built in 2.13s, 233 modules transformed).
+    - Format check tidak tersedia di package.json, tetapi build sudah validasi TypeScript.
+  - Route access per role (sudah diverifikasi dari kode):
+    - `super_admin`: dapat mengakses `/tenants`, `/outlets`, `/users`, `/profile`. Tidak dapat mengakses `/tables`, `/pricing-rules`, `/additional-fees`, `/packages` (admin-only).
+    - `admin`: dapat mengakses `/dashboard`, `/users`, `/sessions`, `/tables`, `/pricing-rules`, `/additional-fees`, `/packages`, `/audit-logs`, `/profile`. Tidak dapat mengakses `/tenants`, `/outlets` (super_admin-only).
+    - `officer`: hanya dapat mengakses `/pos`, `/sessions`, `/shifts`, `/payments`, `/receipts`, `/profile`. Tidak melihat menu CRUD master data Phase 2.
+  - Manual QA CRUD (perlu dilakukan oleh user dengan backend aktif):
+    - Tenants: test create/edit/delete sebagai super_admin.
+    - Outlets: test create/edit/delete sebagai super_admin.
+    - Users: test create/edit/delete sebagai super_admin dan admin.
+    - Table types & Tables: test create/edit/delete sebagai admin.
+    - Pricing rules & Additional fees: test create/edit/delete sebagai admin.
+    - Packages: test create/edit/delete sebagai admin.
+  - Catatan untuk Phase 3:
+    - Data `tables` dan `packages` yang dibaca officer di POS sebaiknya diakses lewat endpoint read-only pada flow `/pos`, bukan route CRUD.
+  - Cara verifikasi:
+    - `npm run build` — sukses (built in 2.13s).
+    - `npm run lint` — 138 errors dari worktree `.kilo/worktrees/hyper-lung`, 0 errors dari kode utama.
+
 ## In Progress
 
 - Tidak ada task yang sedang berjalan saat ini.
 
 ## Next
 
-- Phase 2 Task 9: Router, Navigation, dan Permission Alignment.
-- Phase 2 Task 10: Validasi, Manual QA, dan Regression Check Phase 2.
+- Phase 3: POS Core (sesuaikan dengan implementation plan berikutnya).

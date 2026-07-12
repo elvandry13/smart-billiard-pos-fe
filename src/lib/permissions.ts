@@ -14,7 +14,7 @@ export const routeRoles: Record<string, Role[]> = {
   '/tables': ['admin'],
   '/pricing-rules': ['admin'],
   '/additional-fees': ['admin'],
-  '/packages': ['admin', 'officer'],
+  '/packages': ['admin'],
   '/users': ['super_admin', 'admin'],
   '/tenants': ['super_admin'],
   '/outlets': ['super_admin'],

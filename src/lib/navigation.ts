@@ -70,12 +70,12 @@ export const navigationItems: NavigationItem[] = [
     allowedRoles: ['admin'],
   },
 
-  // Admin & Officer
+  // Admin only
   {
     label: 'Packages',
     path: '/packages',
     icon: 'package',
-    allowedRoles: ['admin', 'officer'],
+    allowedRoles: ['admin'],
   },
   {
     label: 'Shifts',

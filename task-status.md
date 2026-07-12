@@ -199,10 +199,34 @@
   - Cara verifikasi:
     - `npm run build` — sukses (built in 7.18s).
 
+- Phase 2 Task 8: Admin Package CRUD.
+  - File yang dibuat:
+    - `src/features/packages/schemas.ts` — Zod schema untuk Package form validation dengan PACKAGE_TYPE_OPTIONS dan VALID_DAY_TYPE_OPTIONS.
+    - `src/features/packages/components/PackageForm.tsx` — form reusable create/edit dengan React Hook Form + Zod, conditional fields berdasarkan package type (duration, fixed_price, price_per_minute).
+    - `src/features/packages/pages/PackagesPage.tsx` — halaman list/create/edit/delete package dengan search, filter type/is_active, pagination, loading/error/empty state.
+  - File yang diubah:
+    - `src/app/router.tsx` — replace PlaceholderPage dengan PackagesPage, ganti allowedRoles dari `['admin', 'officer']` menjadi `['admin']` saja.
+    - `src/lib/permissions.ts` — remove `officer` dari routeRoles `/packages`.
+    - `src/lib/navigation.ts` — remove `officer` dari allowedRoles navigation item Packages.
+  - Acceptance criteria yang terpenuhi:
+    - `/packages` menjadi halaman CRUD untuk `admin` pada Phase 2. Officer tidak mendapat akses.
+    - Package dapat di-list/create/edit/delete lewat `/packages/`.
+    - Form mendukung field: `name`, `type`, `duration_minutes`, `fixed_price`, `price_per_minute`, `valid_day_type`, `specific_date`, `valid_start_time`, `valid_end_time`, `is_active`.
+    - Conditional validation untuk `specific_date` saat `valid_day_type = specific_day`.
+    - Conditional display untuk field berdasarkan package type:
+      - `fixed_duration`: tampilkan duration_minutes dan fixed_price.
+      - `per_minute`: tampilkan price_per_minute.
+      - `open_loss` dan `happy_hour`: tampilkan fixed_price.
+    - Mutation meng-invalidate `['packages']`.
+    - Loading/error/empty state tampil dengan benar.
+  - Cara verifikasi:
+    - `npm run build` — sukses (built in 5.87s).
+
 ## In Progress
 
 - Tidak ada task yang sedang berjalan saat ini.
 
 ## Next
 
-- Phase 2 Task 8: Admin Package CRUD.
+- Phase 2 Task 9: Router, Navigation, dan Permission Alignment.
+- Phase 2 Task 10: Validasi, Manual QA, dan Regression Check Phase 2.

@@ -6,6 +6,8 @@ import { TenantsPage } from '@/features/tenants/pages/TenantsPage';
 import { OutletsPage } from '@/features/outlets/pages/OutletsPage';
 import { UsersPage } from '@/features/users/pages/UsersPage';
 import { TablesPage } from '@/features/tables/pages/TablesPage';
+import { PricingRulesPage } from '@/features/pricing/pages/PricingRulesPage';
+import { AdditionalFeesPage } from '@/features/pricing/pages/AdditionalFeesPage';
 import { AuthLayout } from '@/layouts/AuthLayout';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { PosLayout } from '@/layouts/PosLayout';
@@ -186,12 +188,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Pricing Rules"
-            description="Manajemen aturan harga akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <PricingRulesPage />,
       },
     ],
   },
@@ -207,12 +204,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Additional Fees"
-            description="Manajemen biaya tambahan akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <AdditionalFeesPage />,
       },
     ],
   },

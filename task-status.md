@@ -174,10 +174,35 @@
     - Setelah penyesuaian OpenAPI: `npm run build` — sukses (built in 1.21s).
     - Setelah penyesuaian field request body: `npm run build` — sukses (built in 5.40s).
 
+- Phase 2 Task 7: Admin Pricing Rules dan Additional Fees CRUD.
+  - File yang dibuat:
+    - `src/features/pricing/api.ts` — list/get/create/update/delete API untuk `/pricing-rules/` dan `/additional-fees/`, dengan helper `buildQuery` dan normalisasi list response.
+    - `src/features/pricing/hooks.ts` — TanStack Query hooks dan mutations untuk pricing rules dan additional fees, masing-masing dengan invalidation key terpisah.
+    - `src/features/pricing/schemas.ts` — Zod schema untuk PricingRule dan AdditionalFee form validation dengan conditional display untuk `specific_date` dan `type`.
+    - `src/features/pricing/components/PricingRuleForm.tsx` — form reusable create/edit aturan harga dengan React Hook Form + Zod, conditional `specific_date` saat `day_type = specific_day`.
+    - `src/features/pricing/components/AdditionalFeeForm.tsx` — form reusable create/edit biaya tambahan dengan conditional label (Persentase/Nominal).
+    - `src/features/pricing/pages/PricingRulesPage.tsx` — halaman list/create/edit/delete pricing rule dengan search, filter day_type/is_active, pagination, loading/error/empty state.
+    - `src/features/pricing/pages/AdditionalFeesPage.tsx` — halaman list/create/edit/delete additional fee dengan search, filter type/is_active, pagination, loading/error/empty state.
+  - File yang diubah:
+    - `src/app/router.tsx` — replace PlaceholderPage dengan PricingRulesPage dan AdditionalFeesPage.
+  - Acceptance criteria yang terpenuhi:
+    - `/pricing-rules` menampilkan CRUD pricing rule.
+    - `/additional-fees` menampilkan CRUD additional fee.
+    - Pricing rule mendukung `day_type`: `weekday`, `weekend`, `specific_day`.
+    - Pricing rule mendukung field waktu/tanggal sesuai backend, termasuk `specific_date` bila `specific_day`.
+    - Additional fee mendukung `type`: `percentage` dan `fixed`.
+    - Field nominal dikirim sebagai string.
+    - Conditional validation untuk `specific_date` saat `day_type = specific_day`.
+    - Conditional display untuk field percentage/fixed fee.
+    - Mutation meng-invalidate `['pricing-rules']` dan `['additional-fees']`.
+    - Loading/error/empty state tampil dengan benar.
+  - Cara verifikasi:
+    - `npm run build` — sukses (built in 7.18s).
+
 ## In Progress
 
 - Tidak ada task yang sedang berjalan saat ini.
 
 ## Next
 
-- Phase 2 Task 7: Admin Pricing Rules dan Additional Fees CRUD.
+- Phase 2 Task 8: Admin Package CRUD.

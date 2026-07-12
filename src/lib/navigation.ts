@@ -47,7 +47,7 @@ export const navigationItems: NavigationItem[] = [
     label: 'Tables',
     path: '/tables',
     icon: 'layout',
-    allowedRoles: ['admin', 'officer'],
+    allowedRoles: ['admin'],
   },
 
   // Admin only

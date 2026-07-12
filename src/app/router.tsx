@@ -5,6 +5,7 @@ import { ProfilePage } from '@/features/profile/pages/ProfilePage';
 import { TenantsPage } from '@/features/tenants/pages/TenantsPage';
 import { OutletsPage } from '@/features/outlets/pages/OutletsPage';
 import { UsersPage } from '@/features/users/pages/UsersPage';
+import { TablesPage } from '@/features/tables/pages/TablesPage';
 import { AuthLayout } from '@/layouts/AuthLayout';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { PosLayout } from '@/layouts/PosLayout';
@@ -159,7 +160,7 @@ export const router = createBrowserRouter([
     path: '/tables',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={['admin', 'officer']}>
+        <RoleGuard allowedRoles={['admin']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -168,10 +169,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <PlaceholderPage
-            title="Tables"
-            description="Manajemen meja akan dibangun pada fase berikutnya."
-          />
+          <TablesPage />
         ),
       },
     ],

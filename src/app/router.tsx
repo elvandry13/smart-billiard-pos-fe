@@ -2,6 +2,13 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import { LoginPage } from '@/features/auth/pages/LoginPage';
 import { ProfilePage } from '@/features/profile/pages/ProfilePage';
+import { TenantsPage } from '@/features/tenants/pages/TenantsPage';
+import { OutletsPage } from '@/features/outlets/pages/OutletsPage';
+import { UsersPage } from '@/features/users/pages/UsersPage';
+import { TablesPage } from '@/features/tables/pages/TablesPage';
+import { PricingRulesPage } from '@/features/pricing/pages/PricingRulesPage';
+import { AdditionalFeesPage } from '@/features/pricing/pages/AdditionalFeesPage';
+import { PackagesPage } from '@/features/packages/pages/PackagesPage';
 import { AuthLayout } from '@/layouts/AuthLayout';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { PosLayout } from '@/layouts/PosLayout';
@@ -95,12 +102,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Tenants"
-            description="Manajemen tenant akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <TenantsPage />,
       },
     ],
   },
@@ -116,12 +118,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Outlets"
-            description="Manajemen outlet akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <OutletsPage />,
       },
     ],
   },
@@ -137,12 +134,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Users"
-            description="Manajemen user akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <UsersPage />,
       },
     ],
   },
@@ -171,7 +163,7 @@ export const router = createBrowserRouter([
     path: '/tables',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={['admin', 'officer']}>
+        <RoleGuard allowedRoles={['admin']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -180,10 +172,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <PlaceholderPage
-            title="Tables"
-            description="Manajemen meja akan dibangun pada fase berikutnya."
-          />
+          <TablesPage />
         ),
       },
     ],
@@ -200,12 +189,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Pricing Rules"
-            description="Manajemen aturan harga akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <PricingRulesPage />,
       },
     ],
   },
@@ -221,12 +205,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Additional Fees"
-            description="Manajemen biaya tambahan akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <AdditionalFeesPage />,
       },
     ],
   },
@@ -234,7 +213,7 @@ export const router = createBrowserRouter([
     path: '/packages',
     element: (
       <ProtectedRoute>
-        <RoleGuard allowedRoles={['admin', 'officer']}>
+        <RoleGuard allowedRoles={['admin']}>
           <DashboardLayout />
         </RoleGuard>
       </ProtectedRoute>
@@ -242,12 +221,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <PlaceholderPage
-            title="Packages"
-            description="Manajemen paket akan dibangun pada fase berikutnya."
-          />
-        ),
+        element: <PackagesPage />,
       },
     ],
   },
